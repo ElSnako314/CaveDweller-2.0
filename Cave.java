@@ -4,6 +4,9 @@
  * and open the template in the editor.
  */
 package cavedweller;
+
+import java.util.Set;
+
 /**
  *
  * @author ElSnako
@@ -42,6 +45,29 @@ public class Cave {
             bats[i] = new Bat((int) (this.sizeOfCave * Math.random()), (int) (this.sizeOfCave * Math.random()));
             System.out.println("A bat appears at x: " + bats[i].getX() + " y: " + bats[i].getY());
         }
+        
+        this.key = new Key((int) (this.sizeOfCave * Math.random()), (int) (this.sizeOfCave * Math.random()));
+        System.out.println("" + key.toString());
+        
+        int doorDirection;
+        this.door = new Door(0, 0);
+        doorDirection = (int) (4 * Math.random()); 
+        switch (doorDirection) {
+            case 0:
+                this.door = new Door(0, (int) (this.sizeOfCave * Math.random()));
+                break;
+            case 1:
+                this.door = new Door(this.sizeOfCave, (int) (this.sizeOfCave * Math.random()));
+                break;
+            case 2:
+                this.door = new Door((int) (this.sizeOfCave * Math.random()), 0);
+                break;
+            case 3:
+                this.door = new Door((int) (this.sizeOfCave * Math.random()), this.sizeOfCave);
+                break;
+            default:
+                break;
+        }
     }
 
     //A method that checks collisions between different objects
@@ -69,6 +95,20 @@ public class Cave {
             }
             System.out.println("A bat is at x: " + bat.getX() + ", y: " + bat.getY());
             bat.moveAround(this);
+        }
+        
+        if (caveman.getX() == key.getX() && caveman.getY() == key.getY()) {
+            caveman.findKey(key, door);
+            door.setDoorUnlocked(true);
+        }
+        
+        if (caveman.getX() == door.getX() && caveman.getY() == door.getY()) {
+            if (door.isDoorUnlocked()) {
+                System.out.println("Congrats! You finished the game!");
+            }
+            else {
+                System.out.println("Hmm, this door is locked");
+            }
         }
     }
 
