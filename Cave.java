@@ -50,18 +50,23 @@ public class Cave {
         System.out.println("" + key.toString());
         
         int doorDirection;
-        doorDirection = (int) (this.sizeOfCave * Math.random()); 
-        if (doorDirection == 0) {
-            this.door = new Door(0, (int) (this.sizeOfCave * Math.random()));
-        }
-        else if (doorDirection == 1) {
-            this.door = new Door(this.sizeOfCave, (int) (this.sizeOfCave * Math.random()));
-        }
-        else if (doorDirection == 2) {
-            this.door = new Door((int) (this.sizeOfCave * Math.random()), 0);
-        }
-        else if (doorDirection == 3) {
-            this.door = new Door((int) (this.sizeOfCave * Math.random()), this.sizeOfCave);
+        this.door = new Door(0, 0);
+        doorDirection = (int) (4 * Math.random()); 
+        switch (doorDirection) {
+            case 0:
+                this.door = new Door(0, (int) (this.sizeOfCave * Math.random()));
+                break;
+            case 1:
+                this.door = new Door(this.sizeOfCave, (int) (this.sizeOfCave * Math.random()));
+                break;
+            case 2:
+                this.door = new Door((int) (this.sizeOfCave * Math.random()), 0);
+                break;
+            case 3:
+                this.door = new Door((int) (this.sizeOfCave * Math.random()), this.sizeOfCave);
+                break;
+            default:
+                break;
         }
     }
 
@@ -93,12 +98,12 @@ public class Cave {
         }
         
         if (caveman.getX() == key.getX() && caveman.getY() == key.getY()) {
-            caveman.findKey(key);
+            caveman.findKey(key, door);
+            door.setDoorUnlocked(true);
         }
         
         if (caveman.getX() == door.getX() && caveman.getY() == door.getY()) {
             if (door.isDoorUnlocked()) {
-                door.setDoorUnlocked(true);
                 System.out.println("Congrats! You finished the game!");
             }
             else {

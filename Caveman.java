@@ -60,9 +60,9 @@ public class Caveman {
         }
     }
     
-    public void findKey(Key key) {
+    public void findKey(Key key, Door door) {
         key.setCavemanHasKey(true);
-        key.keyClue(key);
+        key.keyClue(door);
     }
     
     //Accessors - getters & setters

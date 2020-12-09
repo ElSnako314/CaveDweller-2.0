@@ -24,12 +24,12 @@ public class Key {
         return "A shiny object appears at (" + this.x + ", " + this.y + ")";
     }
     
-    public void keyClue(Key key) {
+    public void keyClue(Door door) {
         System.out.println("Congratulations! You found the key!");
         System.out.println("Now, to find the exit of this cave, solve this puzzle");
         System.out.println("The exit is at coordinates x and y");
         int keySum;
-        keySum =4 * key.getX() + 3 * key.getY();
+        keySum = 4 * door.getX() + 3 * door.getY();
         System.out.print("Four times the value of x plus 3 times the value of y is " + keySum);
     }
 
