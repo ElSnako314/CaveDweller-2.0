@@ -54,7 +54,17 @@ public class Caveman {
         HP += fruit.getHealthBoost();
         fruit.setIsFoodEaten(true);
         System.out.println("Me eat the " + fruit.getName() + "!!");
+        if (fruit.isFruitType()) {
+            this.vx = 2;
+            this.vy = 2;
+        }
     }
+    
+    public void findKey(Key key) {
+        key.setCavemanHasKey(true);
+        key.keyClue(key);
+    }
+    
     //Accessors - getters & setters
     public int getHP() {
         return setHP(HP);

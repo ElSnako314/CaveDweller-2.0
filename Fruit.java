@@ -66,4 +66,8 @@ public class Fruit {
         public void setIsFoodEaten(boolean isFoodEaten) {
             this.isFoodEaten = isFoodEaten;
         }
+
+    public boolean isFruitType() {
+        return fruitType;
+    }
 }
