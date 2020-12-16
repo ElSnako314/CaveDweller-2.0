@@ -39,15 +39,31 @@ public class Caveman {
             // this means that y is decreased by one (could have used other ways to decrease/increase as well)
             y -= 1 * vy;
             // y tracks how far down (as opposed to how far up)
+            if (y < 0) {
+                this.y = 0;
+                System.out.println("You've hit the top wall of the cave");
+            }
         }
-        public void moveDown() {
+        public void moveDown(Cave cave) {
             y += 1 * vy;
+            if (y > cave.getSizeOfCave()) {
+                this.y = cave.getSizeOfCave();
+                System.out.println("You've hit the bottom wall of the cave");
+            }
         }
         public void moveLeft() {
             x -= 1 * vx;
+            if (x < 0) {
+                this.x = 0;
+                System.out.println("You've hit the left wall of the cave");
+            }
         }
-        public void moveRight() {
+        public void moveRight(Cave cave) {
             x += 1 * vx;
+            if (x > cave.getSizeOfCave()) {
+                this.x = cave.getSizeOfCave();
+                System.out.println("You've hit the right wall of the cave");
+            }
         }
     
     public void eat(Fruit fruit) {
@@ -55,8 +71,8 @@ public class Caveman {
         fruit.setIsFoodEaten(true);
         System.out.println("Me eat the " + fruit.getName() + "!!");
         if (fruit.isFruitType()) {
-            this.vx = 2;
-            this.vy = 2;
+            this.setVx(2);
+            this.setVy(2);
         }
     }
     
@@ -113,4 +129,12 @@ public class Caveman {
         public void setCavemanHasKey(boolean cavemanHasKey) {
             this.cavemanHasKey = cavemanHasKey;
         }
+
+    public void setVx(int vx) {
+        this.vx = vx;
+    }
+
+    public void setVy(int vy) {
+        this.vy = vy;
+    }
 }

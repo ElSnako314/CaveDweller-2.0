@@ -5,8 +5,6 @@
  */
 package cavedweller;
 
-import java.util.Set;
-
 /**
  *
  * @author ElSnako
@@ -50,7 +48,6 @@ public class Cave {
         System.out.println("" + key.toString());
         
         int doorDirection;
-        this.door = new Door(0, 0);
         doorDirection = (int) (4 * Math.random()); 
         switch (doorDirection) {
             case 0:
@@ -75,18 +72,27 @@ public class Cave {
         
         for (Fruit fruit : fruits) {
             if (caveman.getX() == fruit.getX() && caveman.getY() == fruit.getY()) {
+                if (fruit.isIsFruitEaten()) continue;
                 caveman.eat(fruit);
                 System.out.println("You've eaten an " + fruit.getName() + " and your health has increased to " + caveman.getHP());
             }
-            System.out.println("An apple is at x: " + fruit.getX() + ", y: " + fruit.getY());
+            if (!fruit.isIsFruitEaten()) {
+                System.out.println("An apple is at x: " + fruit.getX() + ", y: " + fruit.getY());
+            }
+            else continue;
+
         }
         
         for (Fruit fruit: speedfruit) {
             if (caveman.getX() == fruit.getX() && caveman.getY() == fruit.getY()) {
+                if (fruit.isIsFruitEaten()) continue;
                 caveman.eat(fruit);
                 System.out.println("You've eaten an " + fruit.getName() + " and your speed has increased to " + caveman.getVx());
             }
-            System.out.println("A special pomogranate is at x: " + fruit.getX() + ", y: " + fruit.getY());
+            if (!fruit.isIsFruitEaten()) {
+                System.out.println("A special pomogranate is at x: " + fruit.getX() + ", y: " + fruit.getY());
+            }
+            else continue;
         }
         
         for (Bat bat: bats) {
@@ -120,7 +126,7 @@ public class Cave {
             System.out.println("You're now at " + this.caveman.toString());
         }
         else if (input.trim().equalsIgnoreCase("down")) {
-            this.caveman.moveDown();
+            this.caveman.moveDown(this);
             System.out.println("You're now at " + this.caveman.toString());
         }
         else if (input.trim().equalsIgnoreCase("left")) {
@@ -128,7 +134,7 @@ public class Cave {
             System.out.println("You're now at " + this.caveman.toString());
         }
         else if (input.trim().equalsIgnoreCase("right")) {
-            this.caveman.moveRight();
+            this.caveman.moveRight(this);
             System.out.println("You're now at " + this.caveman.toString());
         }
         else if (input.trim().equalsIgnoreCase("close")) {

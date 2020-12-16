@@ -14,7 +14,7 @@ public class Fruit {
     private String fruitName;
     private int healthBoost = 10, x, y;
     private double healthMultiplier = 0.5; 
-    private boolean isFoodEaten, isFoodRotten, fruitType;
+    private boolean isFruitEaten, isFoodRotten, fruitType;
     
     //Constructor for Fruit
     public Fruit(String name, int x, int y, boolean isFoodRotten, boolean fruitType) {
@@ -23,7 +23,7 @@ public class Fruit {
             this.x = x;
             this.y = y;
             this.fruitName = name;
-            this.isFoodEaten = false; 
+            this.isFruitEaten = false; 
             if (isFoodRotten = true) {
                 this.healthBoost *= healthMultiplier;
             }
@@ -34,7 +34,7 @@ public class Fruit {
             this.y = y;
             this.fruitName = name;
             this.isFoodRotten = false;
-            this.isFoodEaten = false;
+            this.isFruitEaten = false;
         }
     }
     //Fruit Methods
@@ -59,12 +59,12 @@ public class Fruit {
         return y;
     }
 
-    public boolean isIsFoodEaten() {
-        return isFoodEaten;
+    public boolean isIsFruitEaten() {
+        return isFruitEaten;
     }
         //A setter that changes the boolean "isFoodEaten"
         public void setIsFoodEaten(boolean isFoodEaten) {
-            this.isFoodEaten = isFoodEaten;
+            this.isFruitEaten = isFoodEaten;
         }
 
     public boolean isFruitType() {
